@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About
+{% endblock %}
+
+
+{% block search %}
+{% endblock %}
+
+{% block welcome %}
+<h2 class="heading" style="text-align: center;">About</h2>
+{% endblock %}
+
+{% load static %}
+{% block content %}
+<h3 class="heading" style="text-align: center;">About Me</h3>
+<article class="about-section py-5">
+    <div class="container">
+        <p>My name is Landry I'm fullstack Dev. I love to developpe web application,desktop app</p>
+        <figure><img class="img-fluid" src="{% static 'assets/images/author.jpeg' %}" alt="image"></figure>
+    </div>
+</article>
+
+<h3 class="heading" style="text-align: center;">About Blog</h3>
+<article class="about-section py-5">
+    <div class="container">
+        <p>this blog is dev with django framework</p>
+    </div>
+</article>
+{% endblock %}

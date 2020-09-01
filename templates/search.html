@@ -1,0 +1,6 @@
+<form method="GET" action="{% url 'blog:search' %}" class="signup-form form-inline justify-content-center pt-3">
+    <div class="form-group">
+        {{ form_search.query }}
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

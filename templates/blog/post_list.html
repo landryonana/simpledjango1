@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<section class="blog-list px-3 py-5 p-md-5">
+    <div class="container">
+
+        {% for post in posts %}
+        <div class="item mb-5">
+            <div class="media">
+                <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="
+                    {% if post.image %}
+                        {{post.image}}
+                    {% else %}
+                    {% static 'assets/images/no_image.png' %}
+                    {% endif %}" alt="image">
+                <div class="media-body">
+                    <h3 class="title mb-1"><a href="{{ post.get_absolute_url }}">
+                            {{ post.title }}</a>
+                    </h3>
+                    <div class="meta mb-1"><span class="date">Published {{ post.publish }}</span><span
+                            class="time"></span></div>
+                    <div class="intro">{{ post.body|linebreaks|truncatewords:30 }}</div>
+                    <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No Post found</p>
+        {% endfor %}
+
+        {% include 'pagination.html' with page=posts %}
+
+    </div>
+</section>
+
+{% endblock %}

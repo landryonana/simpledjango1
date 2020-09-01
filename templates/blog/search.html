@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+search of {{ query }}
+{% endblock %}
+
+{% block welcome %}
+<div style="text-align: center;">
+    <h2 class="heading">
+        Results of "{{ query }}"
+    </h2>
+    <p>Found {{ results.count }}</p>
+</div>
+{% endblock %}
+
+{% load static %}
+{% block content %}
+<section class="blog-list px-3 py-5 p-md-5">
+    <div class="container">
+        {% for post in results %}
+        <div class="item mb-5">
+            <div class="media">
+                <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="
+                    {% if post.image %}
+                        {{post.image}}
+                    {% else %}
+                    {% static 'assets/images/no_image.png' %}
+                    {% endif %}" alt="image">
+                <div class="media-body">
+                    <h3 class="title mb-1"><a href="{{ post.get_absolute_url }}">
+                            {{ post.title }}</a>
+                    </h3>
+                    <div class="meta mb-1"><span class="date">Published {{ post.publish }}</span><span
+                            class="time"></span>
+                    </div>
+                    <div class="intro">{{ post.body|linebreaks|truncatewords:30 }}</div>
+                    <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p style="text-align: center;">No Post found</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
